@@ -3,6 +3,7 @@ const app = new Koa();
 
 const one = (ctx, next) => {
   console.log('>> one');
+  ctx.afff = 'hello'
   next();
   console.log('<< one');
 }
@@ -15,6 +16,7 @@ const two = (ctx, next) => {
 
 const three = (ctx, next) => {
   console.log('>> three');
+  console.log(ctx.afff);
   next();
   console.log('<< three');
 }
@@ -29,3 +31,4 @@ app.use(ctx => {
 });
 
 app.listen(3002);
+console.log("应用启动成功，localhost:3002");

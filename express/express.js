@@ -1,34 +1,18 @@
 var express = require("express");
-// first step
+var path = require("path");
+
 var app = express();
 
+// 指定模板文件所在目录
+app.set("views", path.resolve("express", "views"));
+// 指定要使用的模板引擎
+app.set("view engine", "pug");
+// app.engine('.html', require('pug').__express)
+// app.set('view engine', 'html')
 
-const one = (req, res, next) => {
-  console.log('>> one');
-  next();
-  console.log('<< one');
-}
-
-const two = (req, res, next) => {
-  console.log('>> two');
-  next(); 
-  console.log('<< two');
-}
-
-const three = (req, res, next) => {
-  console.log('>> three');
-  next();
-  console.log('<< three');
-}
-
-app.use(one);
-app.use(two);
-app.use(three);
-
-// second step
 app.get("/", function(req, res) {
-  res.send("Hello world!");
+  res.render("home", { title: "Hey", message: "Hello there!" });
 });
 
-// third step
 app.listen(3003);
+console.log("应用启动成功，localhost:3003");
